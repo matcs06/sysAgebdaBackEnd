@@ -39,7 +39,6 @@ class UserRepository implements IUserRepository{
 
    async findById(id: string): Promise<User | undefined> {
       const user = await this.respository.findOne(id)
-      console.log(user?.products)
       return user;
    }
    

@@ -8,7 +8,6 @@ class ListProductController {
   async handle(request: Request, response: Response): Promise<Response> {
     
     const {user_id} = request.query
-    console.log(String(user_id))
 
     const listProductService = container.resolve(ListProductsService)
 
