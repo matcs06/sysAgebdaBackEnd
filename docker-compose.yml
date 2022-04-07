@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  database_clickagenda:
+    image: postgres
+    container_name: database_clickagenda
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=clickagenda
+      - POSTGRES_DB=clickagenda
+    volumes:
+      - pgdata:/data/postgres
+
+volumes:
+  pgdata:
+    driver: local

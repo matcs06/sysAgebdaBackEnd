@@ -1,0 +1,21 @@
+import { Transactions } from '../entities/Transactions';
+
+interface ICreateTransactionDTO{
+   title:string;
+   value:string;
+   formatedDate: string;
+   type: string;
+   user_id:string;
+}
+
+interface ITransactionsRepository{
+   create({
+      title, formatedDate, value, user_id
+   }: ICreateTransactionDTO): Promise<void>;
+
+   deleteById(id:string): Promise<void>;
+   findById(username:string): Promise<Transactions | undefined>;
+   list(user_id:string):Promise<Transactions[]>
+}
+
+export { ITransactionsRepository, ICreateTransactionDTO };
