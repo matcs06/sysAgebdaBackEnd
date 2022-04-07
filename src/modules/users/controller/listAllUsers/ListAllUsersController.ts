@@ -7,8 +7,6 @@ class ListAllUsersController {
 
   async handle(request: Request, response: Response): Promise<Response> {
       
-    const { user_id }  = request.params  
-
     const listAllUserService = container.resolve(ListAllUsersService)
 
     const foundUsers = await listAllUserService.execute();

@@ -69,3 +69,20 @@
 <h3>2.Listar transactions:</h3>
 <p>-{user_id} = request.query</p>
 <p>ex: /transactions?user_id={userid}</p>
+
+<h2>Usuários</h2>
+<h3>1.Criar usuário (todos do request.body)</h3>
+ <ul>
+   <li>name</li>
+   <li>username</li> 
+   <li>password</li> 
+   <li>key</li>
+  </ul>
+  <p>ex: /users</p>
+
+<h3>2.Listar usuários</h3>
+<p>ex: /users</p>
+
+<h3>4.Listar usuários por username</h3>
+<p>ex: /users/{username}</p>
+<p>{ username }  = request.params</p>
