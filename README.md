@@ -90,3 +90,15 @@ Serviços(product)
 2.Listar serviços:
 -{user_id} = request.query
 ex: /products?user_id={userid}
+
+Transações(transaction)
+1.Criar transações(todos do request.body):
+-title,
+-formatedDate,
+-value,
+-user_id
+-ex: /transactions (passar o barer token)
+
+2.Listar transactions:
+-{user_id} = request.query
+ex: /transactions?user_id={userid}
