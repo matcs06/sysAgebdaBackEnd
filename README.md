@@ -1,104 +1,71 @@
-Serviços:
-Criação de serviço
-Listagem de todos os serviços
-Remover serviços
-Listage de unico serviço
+<h1>Sys agenda Api doc</h1>
 
-Usuário:
-Criação de um usuário
-Remoção de um usuário
+<h3>Agendamento(schedules)</h2>
 
-Agendamento:
-Criar um novo agendamento
-Listar todos os agendamentos
-Listar um único agendamento
-Remover um agendamento
+<h3>1.Criar agendamentos:</h3>
+<p>-todos do request.body</p>
+<ul>
+   <li>-ex: /schedules</li>
+   <li>-customer_name,</li>
+   <li>-service, date,</li>
+   <li>-start_time,</li>
+   <li>-service_duration,</li>
+   <li>-phone_number,</li>
+   <li>-isMorning,</li>
+   <li>-user_id</li>
+</ul>
 
-Horários
-Criar horários
-Listar horários
-Listar um horário
-Remover horário
+<h3>2.Listar Agendamentos</h3>
+<p>-user_id = request.query</p>
+<p>-ex: /schedules?user_id={userid}</p>
 
-User schema:
-id
-name
-username
-password
-created_at
+<h2>Horários(availability):</h2>
+<h3>1.Criar horarios:</h3>
+<p>-todos do request.body</p>
+<ul>
+   <li>-date,</li>
+   <li>-morning_start_time,</li>
+   <li>-morning_end_time,</li>
+   <li>-afternoon_start_time,</li>
+   <li>-afternoon_end_time,</li>
+   <li>-user_id</li>
+   <li>-ex: /availability (passar o barer token)</li>
+</ul>
 
-Horários schema:
-date
-morning_star_time:
-morning_end_time:
-after_start_time:
-after_end_time:
+<h3>2.Listar horários:</h3>
+<p>-ex: /availability</p>
+<p>-{user_id} = request.query</p>
 
-Agendamentos Schema:
-CustomerName:
-number:
-Service:
-date:
-start_time:
-end_time:
+<h3>3.Listar detalhes do horario:</h3>
+<p>-{ service_duration, user_id } = request.query</p>
+<p>-{id} = request.params</p>
+<p>-ex:availability/details/{availabilityId}?service_duration={sd}&user_id={user_id}</p>
 
-Agendamento(schedules)
-1.Criar agendamentos:
--todos do request.body
--ex: /schedules
--customer_name,
--service, date,
--start_time,
--service_duration,
--phone_number,
--isMorning,
--user_id
+<h2>Serviços(product)</h2>
+<h3>1.Criar serviço(todos do request.body):</h3>
+<ul>
+   <li>-name,</li>
+   <li>-description,</li>
+   <li>-price,</li>
+   <li>-duration,</li>
+   <li>-user_id</li>
+   <li>-ex: /products (passar o barer token)</li>
+</ul>
 
-2.Listar Agendamentos
--user_id = request.query
--ex: /schedules?user_id={userid}
+<h3>2.Listar serviços:</h3>
+<p>-{user_id} = request.query</p>
+<p>ex: /products?user_id={userid}</p>
 
-Horários(availability):
-1.Criar horarios:
--todos do request.body
--date,
--morning_start_time,
--morning_end_time,
--afternoon_start_time,
--afternoon_end_time,
--user_id
--ex: /availability (passar o barer token)
+<h2>Transações(transaction)</h2>
+<h3>1.Criar transações(todos do request.body):</h3>
+<ul>
+   <li>-title,</li>
+   <li>-formatedDate,</li>
+   <li>-value,</li>
+   <li>-user_id</li>
+</ul>
+<p>-ex: /transactions (passar o barer token)</p>
 
-2.Listar horários:
--ex: /availability
--{user_id} = request.query
-
-3.Listar detalhes do horario:
--{ service_duration, user_id } = request.query
--{id} = request.params
--ex:availability/details/{availabilityId}?service_duration={sd}&user_id={user_id}
-
-Serviços(product)
-1.Criar serviço(todos do request.body):
--name,
--description,
--price,
--duration,
--user_id
--ex: /products (passar o barer token)
-
-2.Listar serviços:
--{user_id} = request.query
-ex: /products?user_id={userid}
-
-Transações(transaction)
-1.Criar transações(todos do request.body):
--title,
--formatedDate,
--value,
--user_id
--ex: /transactions (passar o barer token)
-
-2.Listar transactions:
--{user_id} = request.query
-ex: /transactions?user_id={userid}
+<h3>2.Listar transactions:</h3>
+<p>-{user_id} = request.query</p>
+<p>ex: /transactions?user_id={userid}</p>
