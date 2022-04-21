@@ -14,6 +14,7 @@ interface IResponse{
       name: string
       username: string;
       user_id: string;
+      business_name:string;
    },
    token: string;
 }
@@ -50,7 +51,8 @@ class AuthenticateUserService {
          user:{
             name: user.name,
             username: user.username, 
-            user_id: user.id
+            user_id: user.id,
+            business_name: user.business_name
          }
       }
 
