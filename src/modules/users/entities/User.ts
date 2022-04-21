@@ -19,6 +19,18 @@ class User{
    @Column()
    password: string;
 
+   @Column()
+   phone: string;
+
+   @Column()
+   welcome_message: string;
+
+   @Column()
+   business_name: string;
+
+   @Column()
+   address: string;
+
    @CreateDateColumn()
    created_at: Date;
     

@@ -15,6 +15,7 @@ interface IUserRepository{
    findByName(username:string): Promise<User | undefined>;
    findById(username:string): Promise<User | undefined>;
    findAll():Promise<User[]>;
+   save(data: User):Promise<void>;
 }
 
 export { IUserRepository, ICreateUserDTO };

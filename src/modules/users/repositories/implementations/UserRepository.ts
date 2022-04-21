@@ -29,7 +29,6 @@ class UserRepository implements IUserRepository{
 
    }
    
-
    async findByName(username: string): Promise<User | undefined> {
       const user = await this.respository.findOne({username})
 
@@ -48,6 +47,10 @@ class UserRepository implements IUserRepository{
       return users; 
 
    }
+
+   public async save(data: User): Promise<void> {
+      await this.respository.save(data);
+    }
 
 }
 

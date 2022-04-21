@@ -10,6 +10,10 @@ import {  ListAllUsersController} from '../modules/users/controller/listAllUsers
 
 import { FindUserByNameController } from '../modules/users/controller/findUserByName/FindUserByNameController';
 
+import { UpdateUserController } from '../modules/users/controller/updateUser/UpdateUserController';
+
+import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
+
 const usersRoutes = Router();
 
 const createUserController = new CreateUserController()
@@ -17,6 +21,7 @@ const deleteUserController  = new DeleteUserController()
 const listUserController = new ListUserController()
 const listAllUserService = new ListAllUsersController()
 const findUserByName = new FindUserByNameController()
+const updateUser = new UpdateUserController();
 
 usersRoutes.post('/', createUserController.handle);
 
@@ -26,5 +31,7 @@ usersRoutes.get("/", listAllUserService.handle)
 
 usersRoutes.delete("/:id", deleteUserController.handle)
 
+usersRoutes.use(ensureAuthenticated)
+usersRoutes.patch("/", updateUser.handle)
 
 export { usersRoutes };
