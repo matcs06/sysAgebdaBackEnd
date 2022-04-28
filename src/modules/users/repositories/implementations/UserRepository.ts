@@ -50,7 +50,7 @@ class UserRepository implements IUserRepository{
 
    public async save(data: User): Promise<void> {
       await this.respository.save(data);
-    }
+   }
 
 }
 

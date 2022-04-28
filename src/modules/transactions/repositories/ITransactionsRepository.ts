@@ -5,17 +5,19 @@ interface ICreateTransactionDTO{
    value:string;
    formatedDate: string;
    type: string;
+   payment_status:string;
    user_id:string;
 }
 
 interface ITransactionsRepository{
    create({
-      title, formatedDate, value, user_id
+      title, formatedDate, value, payment_status, user_id
    }: ICreateTransactionDTO): Promise<void>;
 
    deleteById(id:string): Promise<void>;
    findById(username:string): Promise<Transactions | undefined>;
-   list(user_id:string):Promise<Transactions[]>
+   list(user_id:string):Promise<Transactions[]>;
+   save(data: Transactions):Promise<void>;
 }
 
 export { ITransactionsRepository, ICreateTransactionDTO };

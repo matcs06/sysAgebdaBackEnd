@@ -19,6 +19,9 @@ class Transactions{
    @Column()
    formatedDate: string;
 
+   @Column()
+   payment_status: string;
+
    @CreateDateColumn()
    created_at: Date;
 

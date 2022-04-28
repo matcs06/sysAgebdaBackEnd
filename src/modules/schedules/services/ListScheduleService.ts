@@ -1,7 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import { Product } from '../../product/entities/Product';
 import { IProductsRepository } from '../../product/repositories/IProductsRepository';
-import { Schedules } from '../entities/Schedules';
 import { ICreateSchedulesDTO, ISchedulesRepository } from '../repositories/ISchedulesRepository';
 
 @injectable()
@@ -38,6 +36,7 @@ class ListScheduleService {
         service_duration: schedule.service_duration,
         value: schedulePrice,
         isMorning: schedule.isMorning,
+        payment_status: schedule.payment_status,
         user_id: user_id
       }
 

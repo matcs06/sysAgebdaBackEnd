@@ -40,6 +40,10 @@ class SchedulesRepository implements ISchedulesRepository{
 
    }
 
+   public async save(data: Schedules): Promise<void> {
+      await this.repository.save(data);
+   }
+
 }
 
 export {SchedulesRepository};

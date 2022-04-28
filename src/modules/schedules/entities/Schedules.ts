@@ -26,6 +26,9 @@ class Schedules{
    service_duration: string;
 
    @Column()
+   payment_status: string;
+
+   @Column()
    isMorning: boolean;
 
    @CreateDateColumn()

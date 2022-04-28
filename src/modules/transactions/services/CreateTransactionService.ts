@@ -6,6 +6,7 @@ interface IRequest{
    value:string;
    formatedDate: string;
    user_id:string;
+   payment_status:string;
 }
 
 @injectable()
@@ -17,7 +18,7 @@ class CreateTransactionService {
   }
 
   async execute({
-    title, formatedDate, value, user_id
+    title, formatedDate, value, payment_status, user_id
   }:IRequest):Promise<void> {
     
    const type = Number(value) >= 0 ? "income" : "outcome" 
@@ -27,6 +28,7 @@ class CreateTransactionService {
       value,
       formatedDate,
       type,
+      payment_status,
       user_id
     });
   }

@@ -33,6 +33,10 @@ class TransactionsRepository implements ITransactionsRepository{
 
    }
 
+   public async save(data: Transactions): Promise<void> {
+      await this.repository.save(data);
+   }
+
 }
 
 export {TransactionsRepository};

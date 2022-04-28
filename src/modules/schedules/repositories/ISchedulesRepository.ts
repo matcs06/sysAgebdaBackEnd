@@ -18,6 +18,7 @@ interface ISchedulesRepository{
    deleteById(id:string): Promise<void>;
    findById(id:string): Promise<Schedules | undefined>;
    findByPhone(phone_number:string):Promise<Schedules | undefined>
+   save(data: Schedules):Promise<void>;
 }
 
 export { ISchedulesRepository, ICreateSchedulesDTO };
