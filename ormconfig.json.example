@@ -3,9 +3,9 @@
    "type":"postgres",
    "host":"localhost",
    "port": 5432,
-   "username":"mateus",
-   "password":"agendamento",
-   "database":"agenda",
+   "username":"matclickagenda",
+   "password":"ab1cbf7bb9c6e0c4734a4acbb3472f2e",
+   "database":"clickagenda",
    "migrations": ["./dist/database/migrations/*.js"],
    "entities": ["./dist/modules/**/entities/*.js"],
    "cli": {
