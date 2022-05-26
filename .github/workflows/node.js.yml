@@ -26,6 +26,4 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: yarn i
-    - run: yarn build --if-present
-    - run: yarn typeorm migration:run
+    - run: pm2 stop 0 
