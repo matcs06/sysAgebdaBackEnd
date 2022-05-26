@@ -26,4 +26,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: pm2 stop 0 
+    - run: yarn 
+    - run: yarn build
+    - run: pm2 restart cicdclickagenda
