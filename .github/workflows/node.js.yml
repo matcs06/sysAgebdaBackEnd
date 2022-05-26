@@ -22,9 +22,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+    - uses: borales/actions-yarn@v2.3.0
       with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: yarn build
+        cmd: install # will run `yarn install` command
+    - uses: borales/actions-yarn@v2.3.0
+      with:
+        cmd: build # will run `yarn build` command
     - run: pm2 restart cicdclickagenda
