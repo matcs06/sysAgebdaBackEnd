@@ -27,9 +27,13 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm i
+    
+    - run: cp /home/mat/app/server/ormsrc/ormconfig.json /home/mat/app/server/server/sysAgebdaBackEnd/sysAgebdaBackEnd/ormconfig.json
+    - run: npm run typeorm migration:run
+    - run: rm /home/mat/app/server/server/sysAgebdaBackEnd/sysAgebdaBackEnd/ormconfig.json
+    
     - run: npm run build --if-present
     - run: cp /home/mat/app/server/ormconfig.json.example /home/mat/app/server/server/sysAgebdaBackEnd/sysAgebdaBackEnd/ormconfig.json
-    - run: npm run typeorm migration:run
     - run: pm2 restart clickeagenda
       
      
