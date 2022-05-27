@@ -27,7 +27,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm i
-    - run: npm run build
-    - run: pm2 retart cicdclickagenda
+    - run: npm run build --if-present
+    - run: pm2 retart clickeagenda
       
      
