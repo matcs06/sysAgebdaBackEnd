@@ -24,7 +24,7 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
     - run: yarn
-    - run: yarn build --if-present
+    - run: yarn build
     - run: cp /home/mat/app/server/ormconfig.json.example /home/mat/app/server/server/sysAgebdaBackEnd/sysAgebdaBackEnd/ormconfig.json
     - run: pm2 restart clickeagenda
       
