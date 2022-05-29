@@ -7,7 +7,6 @@ interface IRequest{
    name:string;
    username:string;
    password: string;
-   key:string;
 }
 
 @injectable()
@@ -19,15 +18,13 @@ class CreateUserService {
   }
 
   async execute({
-    name,password,username, key
+    name,password,username
   }:IRequest):Promise<void> {
     const userAlreadyExists = await this.UserRepository.findByName(username)
 
     if(userAlreadyExists){
       throw new Error("User already exists")
     }
-
-    verifyKey(key)
   
     const passwordHash = await hash(password, 8)
 
