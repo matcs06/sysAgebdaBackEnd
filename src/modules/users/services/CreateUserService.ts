@@ -1,7 +1,6 @@
 import {inject, injectable} from "tsyringe"
 import { IUserRepository } from '../repositories/IUserRepository';
 import { hash } from "bcrypt"
-import verifyKey from "../../../utils/UserSecurity"
 
 interface IRequest{
    name:string;
