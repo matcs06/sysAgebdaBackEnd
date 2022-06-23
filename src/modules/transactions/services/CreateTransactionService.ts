@@ -7,6 +7,7 @@ interface IRequest{
    formatedDate: string;
    user_id:string;
    payment_status:string;
+   customer_phone:string;
 }
 
 @injectable()
@@ -18,19 +19,26 @@ class CreateTransactionService {
   }
 
   async execute({
-    title, formatedDate, value, payment_status, user_id
+    title, formatedDate, value, payment_status, user_id, customer_phone
   }:IRequest):Promise<void> {
     
    const type = Number(value) >= 0 ? "income" : "outcome" 
-    
-    await this.TransactionRepository.create({
+   
+   if(customer_phone == ""){
+      customer_phone = "(00) 00000-0000"
+   }
+   
+   await this.TransactionRepository.create({
       title,
       value,
       formatedDate,
       type,
       payment_status,
-      user_id
-    });
+      user_id,
+      customer_phone
+   });
+
+
   }
 }
 

@@ -7,11 +7,12 @@ interface ICreateTransactionDTO{
    type: string;
    payment_status:string;
    user_id:string;
+   customer_phone: string;
 }
 
 interface ITransactionsRepository{
    create({
-      title, formatedDate, value, payment_status, user_id
+      title, formatedDate, value, payment_status, user_id, customer_phone
    }: ICreateTransactionDTO): Promise<void>;
 
    deleteById(id:string): Promise<void>;

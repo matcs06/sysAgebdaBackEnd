@@ -22,6 +22,9 @@ class Transactions{
    @Column()
    payment_status: string;
 
+   @Column()
+   customer_phone: string;
+
    @CreateDateColumn()
    created_at: Date;
 
