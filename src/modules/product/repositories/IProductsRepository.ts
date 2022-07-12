@@ -6,13 +6,14 @@ interface ICreateProductDTO{
    price: string;
    duration:string;
    user_id:string;
+   enabled: boolean;
 }
 
 interface IProductsRepository{
    findByName(name:string): Promise<Product | undefined>;
    list(user_id: string): Promise<Product[]>;
    create({
-     name, description, duration, price, user_id
+     name, description, duration, price, user_id, enabled
    }: ICreateProductDTO): Promise<void>;
    deleteById(id:string): Promise<void>;
    findById(id:string): Promise<Product | undefined>;

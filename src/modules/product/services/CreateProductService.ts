@@ -1,7 +1,6 @@
 import { IProductsRepository } from '../repositories/IProductsRepository';
 import {inject, injectable} from "tsyringe"
 import {AppError} from '../../../shared/errors/AppError';
-import { IUserRepository } from '../../users/repositories/IUserRepository';
 
 interface IRequest{
    name:string;
@@ -32,8 +31,10 @@ class CreateProductService {
         throw new AppError("Product already exists")
       }
 
+      
+      const enabled = true;
       await this.productsRepository.create({
-        name, description, duration, price, user_id
+        name, description, duration, price, user_id, enabled
       });
 
 

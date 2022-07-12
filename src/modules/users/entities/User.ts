@@ -31,6 +31,15 @@ class User{
    @Column()
    address: string;
 
+   @Column()
+   payment_day: string;
+
+   @Column()
+   payment_status: string;
+
+   @Column()
+   user_level: string;
+
    @CreateDateColumn()
    created_at: Date;
     

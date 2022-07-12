@@ -22,6 +22,9 @@ class Product {
 
   @Column()
   user_id: string;
+
+  @Column()
+  enabled: boolean;
   
   @CreateDateColumn()
   created_at: Date;

@@ -8,6 +8,8 @@ interface IRequest{
    business_name:string;
    address: string;
    phone:string;
+   payment_day:string;
+   payment_status: string;
 }
 
 @injectable()
@@ -19,7 +21,7 @@ class UpdateUserService {
    }
 
   async execute({
-     username, address, business_name, welcome_message, phone
+     username, address, business_name, welcome_message, phone, payment_day, payment_status
   }:IRequest):Promise<void> {
     try {
       const foundUser = await this.UserRepository.findByName(username)
@@ -32,6 +34,8 @@ class UpdateUserService {
       foundUser.address = address;
       foundUser.business_name = business_name;
       foundUser.welcome_message = welcome_message;
+      foundUser.payment_day = payment_day;
+      foundUser.payment_status = payment_status;
 
       await this.UserRepository.save(foundUser)
 

@@ -6,6 +6,7 @@ interface IRequest{
    name:string;
    username:string;
    password: string;
+   user_level:string
 }
 
 @injectable()
@@ -17,7 +18,7 @@ class CreateUserService {
   }
 
   async execute({
-    name,password,username
+    name,password,username, user_level
   }:IRequest):Promise<void> {
     const userAlreadyExists = await this.UserRepository.findByName(username)
 
@@ -28,7 +29,7 @@ class CreateUserService {
     const passwordHash = await hash(password, 8)
 
     await this.UserRepository.create({
-      name, password:passwordHash, username
+      name, password:passwordHash, username, user_level
     });
   }
 }

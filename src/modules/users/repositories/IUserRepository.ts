@@ -4,11 +4,12 @@ interface ICreateUserDTO{
    name:string;
    username:string;
    password: string;
+   user_level:string;
 }
 
 interface IUserRepository{
    create({
-     name, password, username
+     name, password, username, user_level
    }: ICreateUserDTO): Promise<void>;
 
    deleteById(id:string): Promise<void>;

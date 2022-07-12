@@ -9,6 +9,7 @@ interface IRequest{
    description:string;
    price: string;
    duration:string;
+   enabled: boolean
 }
 
 @injectable()
@@ -20,7 +21,7 @@ class UpdateProductService {
   }
 
   async execute({
-    id, name, description, price, duration,
+    id, name, description, price, duration, enabled
   }:IRequest):Promise<void> {
     try {
       const productAlreadyExists = await this.productsRepository.findById(id)
@@ -33,12 +34,12 @@ class UpdateProductService {
       productAlreadyExists.price = price;
       productAlreadyExists.description = description;
       productAlreadyExists.duration = duration;
+      productAlreadyExists.enabled = enabled;
 
       await this.productsRepository.save(productAlreadyExists)
 
     } catch (error) {
       throw new AppError("Error updating service")
-      
     }
     
   }

@@ -13,6 +13,7 @@ import { FindUserByNameController } from '../modules/users/controller/findUserBy
 import { UpdateUserController } from '../modules/users/controller/updateUser/UpdateUserController';
 
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
+import { checkUserLevel } from '../middlewares/checkUserLevel';
 
 const usersRoutes = Router();
 
@@ -29,9 +30,8 @@ usersRoutes.get("/:username", findUserByName.handle)
 usersRoutes.get("/:id", listUserController.handle)
 usersRoutes.get("/", listAllUserService.handle)
 
+usersRoutes.use(checkUserLevel)
 usersRoutes.delete("/:id", deleteUserController.handle)
-
-usersRoutes.use(ensureAuthenticated)
 usersRoutes.patch("/", updateUser.handle)
 
 export { usersRoutes };
