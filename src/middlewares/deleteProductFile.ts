@@ -22,7 +22,7 @@ export async function deleteFile(request: Request, response: Response, next: Nex
       throw new AppError("Product does not exists!")
    }
 
-   const dest = path.resolve(__dirname, '..', 'images', "users", user_name)
+   const dest = path.resolve(__dirname, '..', '..', 'images', "users", user_name)
 
    let image_url = productToDelete.image_url
    if (productToDelete.image_url === "" || productToDelete.image_url === null) {

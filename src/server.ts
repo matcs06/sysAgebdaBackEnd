@@ -18,7 +18,7 @@ const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(
-  '/files', express.static(path.resolve(__dirname, "images/users/"))
+  '/files', express.static(path.resolve(__dirname, "../images/users/"))
 )
 
 app.use(express.json());

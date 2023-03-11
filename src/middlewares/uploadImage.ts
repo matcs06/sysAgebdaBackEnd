@@ -29,7 +29,7 @@ export default {
             if (userName === undefined) {
                userName = "WithoutUser"
             }
-            let dest = path.resolve(__dirname, '..', 'images', "users", userName)
+            let dest = path.resolve(__dirname, '..', "..", 'images', "users", userName)
 
             /* Verifica se o diretório com o nome do usuário não existe, caso nao, cria */
             if (!existsSync(dest)) {
