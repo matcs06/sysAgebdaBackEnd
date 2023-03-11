@@ -12,7 +12,10 @@ class CreateProductController {
       name, description, price, duration, user_id
     } = request.body;
 
-    const { filename } = request.file
+    let filename = request.file?.filename
+    if (filename == undefined) {
+      filename = ""
+    }
 
     const createProductService = container.resolve(CreateProductService)
 

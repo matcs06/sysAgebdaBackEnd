@@ -1,10 +1,17 @@
-// @ts-ignore
 const { existsSync, mkdir } = require('fs')
 import { UserRepository } from "../modules/users/repositories/implementations/UserRepository";
 
-import multer from 'multer';
+import multer, { StorageEngine } from 'multer';
 import path from 'path';
 import crypto from 'crypto';
+
+interface IUploadConfig {
+
+   multer: {
+      storage: StorageEngine;
+   };
+
+}
 
 
 export default {
@@ -39,7 +46,7 @@ export default {
             return callback(null, dest)
          },
          filename(request, file, callback) {
-            const fileHash = crypto.randomBytes(10).toString("HEX");
+            const fileHash = crypto.randomBytes(10).toString("hex");
             const fileName = `${fileHash}-${file.originalname}`;
 
             return callback(null, fileName);
@@ -47,4 +54,4 @@ export default {
       }),
 
    },
-};
+} as IUploadConfig;
