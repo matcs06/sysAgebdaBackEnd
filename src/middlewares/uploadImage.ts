@@ -1,3 +1,4 @@
+// @ts-ignore
 const { existsSync, mkdir } = require('fs')
 import { UserRepository } from "../modules/users/repositories/implementations/UserRepository";
 
@@ -13,12 +14,14 @@ export default {
       storage: multer.diskStorage({
 
          async destination(request, file, callback) {
-            let userName = "WithoutUser"
+            let userName: string | undefined = "WithoutUser"
             const user_id = request.body.user_id
             const userRepository = new UserRepository()
             const user = await userRepository.findById(user_id)
             userName = user?.username
-
+            if (userName === undefined) {
+               userName = "WithoutUser"
+            }
             let dest = path.resolve(__dirname, '..', 'images', "users", userName)
 
             /* Verifica se o diretório com o nome do usuário não existe, caso nao, cria */
