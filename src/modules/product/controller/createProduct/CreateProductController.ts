@@ -12,6 +12,7 @@ class CreateProductController {
     } = request.body;
 
     const { filename } = request.file
+
     const createProductService = container.resolve(CreateProductService)
 
     await createProductService.execute({
