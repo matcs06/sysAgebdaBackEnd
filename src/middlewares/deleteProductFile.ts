@@ -24,7 +24,12 @@ export async function deleteFile(request: Request, response: Response, next: Nex
 
    const dest = path.resolve(__dirname, '..', 'images', "users", user_name)
 
-   const fileToDelete = path.resolve(dest, productToDelete.image_url)
+   let image_url = productToDelete.image_url
+   if (productToDelete.image_url === "" || productToDelete.image_url === null) {
+      image_url = "nothing.png"
+   }
+
+   const fileToDelete = path.resolve(dest, image_url)
 
    /* Verifica se o diretório com o nome do usuário não existe, caso nao, cria */
    if (!existsSync(fileToDelete)) {
