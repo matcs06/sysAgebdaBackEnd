@@ -1,19 +1,21 @@
 import { Request, Response } from 'express';
-import {container} from "tsyringe"
+import { container } from "tsyringe"
 
 import { CreateProductService } from '../../services/CreateProductService';
 
+
 class CreateProductController {
- 
-  async handle(request: Request, response: Response):Promise<Response> {
+
+  async handle(request: Request, response: Response): Promise<Response> {
     const {
       name, description, price, duration, user_id
     } = request.body;
 
+    const { filename } = request.file
     const createProductService = container.resolve(CreateProductService)
 
     await createProductService.execute({
-      name, price, description, duration, user_id
+      name, price, description, duration, user_id, image_url: filename
     });
 
     return response.status(201).send();

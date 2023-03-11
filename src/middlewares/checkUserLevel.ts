@@ -3,15 +3,15 @@ import { verify } from "jsonwebtoken";
 import { UserRepository } from "../modules/users/repositories/implementations/UserRepository";
 import { AppError } from "../shared/errors/AppError";
 
-interface IPayload{
+interface IPayload {
    sub: string;
 }
 
-export async function checkUserLevel(request: Request, response: Response, next: NextFunction){
+export async function checkUserLevel(request: Request, response: Response, next: NextFunction) {
 
    const authHeader = request.headers.authorization;
 
-   if(!authHeader){
+   if (!authHeader) {
       throw new AppError("Token missing", 401)
    }
 
@@ -19,22 +19,22 @@ export async function checkUserLevel(request: Request, response: Response, next:
    const [, token] = authHeader.split(" ")
 
    try {
-      const {sub} = verify(token, "a401dd02b72c03e65c64d1ec858def08") as IPayload
-      
+      const { sub } = verify(token, "a401dd02b72c03e65c64d1ec858def08") as IPayload
+
       const userRepository = new UserRepository()
       const user = await userRepository.findById(sub)
 
-      if(!user){
+      if (!user) {
          throw new AppError("User does not exists!")
       }
 
-      if(user.user_level !== "super"){
+      if (user.user_level !== "super") {
          throw new AppError("You can only perform this action with a Super user")
       }
 
       next()
    } catch {
-      throw new AppError("Invalid token",401)
+      throw new AppError("Invalid token", 401)
    }
 
 }

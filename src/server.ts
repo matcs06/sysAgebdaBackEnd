@@ -3,6 +3,8 @@ import express, { Request, Response, NextFunction } from 'express';
 import "express-async-errors"
 import "./shared/container"
 import cors from 'cors';
+import path from 'path';
+
 
 import { router } from './routes';
 import swaggerUI from "swagger-ui-express";
@@ -14,11 +16,17 @@ createConnection()
 
 const app = express();
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(
+  '/files', express.static(path.resolve(__dirname, "images/users/"))
+)
+
 app.use(express.json());
 app.use(router)
 
-app.use((err:Error, request:Request, response: Response, next:NextFunction )=>{
-  if(err instanceof AppError){
+
+app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
+  if (err instanceof AppError) {
     return response.status(err.statusCode).json({
       message: err.message
     })

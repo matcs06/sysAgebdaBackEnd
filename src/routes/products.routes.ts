@@ -11,14 +11,18 @@ import { ListSingleProductController } from '../modules/product/controller/listS
 import { UpdateProductController } from '../modules/product/controller/updateProduct/UpdateProductController';
 
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
+import uploadImage from '../middlewares/uploadImage';
+import { deleteFile } from "../middlewares/deleteProductFile"
+import multer from 'multer';
 
 const productsRoutes = Router();
 
 const createProductController = new CreateProductController()
 const listProductController = new ListProductController
-const deleteProductController  = new DeleteProductController()
-const listSingleProductController  = new ListSingleProductController()
+const deleteProductController = new DeleteProductController()
+const listSingleProductController = new ListSingleProductController()
 const updateProductController = new UpdateProductController()
+const upload = multer(uploadImage.multer)
 
 productsRoutes.get('/', listProductController.handle);
 
@@ -26,9 +30,13 @@ productsRoutes.get("/:id", listSingleProductController.handle)
 
 productsRoutes.use(ensureAuthenticated)
 
-productsRoutes.post('/', createProductController.handle);
+productsRoutes.post('/',
+   upload.single("filename"),
+   createProductController.handle);
 
-productsRoutes.delete("/:id", deleteProductController.handle)
+productsRoutes.delete("/:id",
+   deleteFile,
+   deleteProductController.handle)
 
 productsRoutes.patch("/:id", updateProductController.handle)
 

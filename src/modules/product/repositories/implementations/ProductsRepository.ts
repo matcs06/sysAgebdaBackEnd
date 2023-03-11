@@ -10,16 +10,16 @@ class ProductsRepository implements IProductsRepository {
     this.repository = getRepository(Product)
   }
 
- /*  public static getInstance():ProductsRepository {
-    if (!ProductsRepository.INSTANCE) {
-      ProductsRepository.INSTANCE = new ProductsRepository();
-    }
-
-    return ProductsRepository.INSTANCE;
-  } */
+  /*  public static getInstance():ProductsRepository {
+     if (!ProductsRepository.INSTANCE) {
+       ProductsRepository.INSTANCE = new ProductsRepository();
+     }
+ 
+     return ProductsRepository.INSTANCE;
+   } */
 
   async create({
-    name, description, price, duration, user_id, enabled
+    name, description, price, duration, user_id, enabled, image_url
   }: ICreateProductDTO): Promise<void> {
     const product = this.repository.create({
       name,
@@ -27,32 +27,33 @@ class ProductsRepository implements IProductsRepository {
       price,
       duration,
       user_id,
-      enabled
+      enabled,
+      image_url
     })
 
     await this.repository.save(product)
   }
 
-  async findByName(name:string): Promise<Product | undefined> {
+  async findByName(name: string): Promise<Product | undefined> {
     const product = await this.repository.findOne({ name });
 
     return product;
   }
 
   async list(user_id: string): Promise<Product[]> {
-    const products = await this.repository.find({user_id: user_id})
+    const products = await this.repository.find({ user_id: user_id })
     return products;
   }
 
-  async deleteById(id: string): Promise<void>{
+  async deleteById(id: string): Promise<void> {
 
     await this.repository.delete(id)
 
   }
 
-   async findById(id: string):  Promise<Product | undefined>{
+  async findById(id: string): Promise<Product | undefined> {
 
-    const product = await this.repository.findOne( id );
+    const product = await this.repository.findOne(id);
     return product;
 
   }
