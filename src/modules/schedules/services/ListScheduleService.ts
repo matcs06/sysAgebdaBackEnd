@@ -47,6 +47,7 @@ class ListScheduleService {
         start_time: schedule.start_time,
         service_duration: schedule.service_duration,
         value: schedulePrice,
+        price: schedulePrice,
         isMorning: schedule.isMorning,
         payment_status: schedule.payment_status,
         user_id: user_id

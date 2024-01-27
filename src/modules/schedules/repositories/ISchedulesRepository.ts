@@ -9,7 +9,7 @@ interface ICreateSchedulesDTO {
    phone_number: string;
    value?: string;
    isMorning: true | false;
-   price?: string;
+   price: string;
    user_id: string;
 }
 
