@@ -8,24 +8,36 @@ class ListScheduleService {
   constructor(
     @inject("SchedulesRepository")
     private SchedulesRepository: ISchedulesRepository,
-    
-    @inject("ProductsRepository")
-    private productsRepository: IProductsRepository) {}
 
-  async execute(user_id:string): Promise<ICreateSchedulesDTO[]> {
+    @inject("ProductsRepository")
+    private productsRepository: IProductsRepository) { }
+
+  async execute(user_id: string): Promise<ICreateSchedulesDTO[]> {
     const schedules = await this.SchedulesRepository.list(user_id);
     const products = await this.productsRepository.list(user_id)
-    var newarrayOfSchedules:Array<ICreateSchedulesDTO> = [];
+    var newarrayOfSchedules: Array<ICreateSchedulesDTO> = [];
 
-    schedules.map(async (schedule)=>{
-        
-      const product = products.filter((prod)=>(
+    schedules.map(async (schedule) => {
+
+      let priceFromSchedule = "0";
+
+      if (schedule.price == null || schedule.price == "") {
+        priceFromSchedule = "0"
+      } else {
+        priceFromSchedule = schedule.price;
+      }
+
+      const product = products.filter((prod) => (
         prod.name === schedule.service
       )
       )
-      
-      const schedulePrice = product[0]?.price;
-               
+
+      let schedulePrice = product[0]?.price;
+
+      if (!schedulePrice || schedulePrice == undefined || schedulePrice == null) {
+        schedulePrice = priceFromSchedule
+      }
+
       const newS = {
         id: schedule.id,
         customer_name: schedule.customer_name,
@@ -41,7 +53,7 @@ class ListScheduleService {
       }
 
       newarrayOfSchedules.push(newS)
-     
+
     })
 
     return newarrayOfSchedules

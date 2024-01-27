@@ -1,52 +1,55 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
-import {v4 as uuidv4} from "uuid"
+import { v4 as uuidv4 } from "uuid"
 import { User } from "../../users/entities/User";
 
 @Entity("schedules")
-class Schedules{
-   @PrimaryColumn()
-   id:string;
+class Schedules {
+  @PrimaryColumn()
+  id: string;
 
-   @Column()
-   customer_name:string;
+  @Column()
+  customer_name: string;
 
-   @Column()
-   phone_number:string;
+  @Column()
+  phone_number: string;
 
-   @Column()
-   service: string;
+  @Column()
+  service: string;
 
-   @Column()
-   date: string;
+  @Column()
+  date: string;
 
-   @Column()
-   start_time: string;
+  @Column()
+  start_time: string;
 
-   @Column()
-   service_duration: string;
+  @Column()
+  service_duration: string;
 
-   @Column()
-   payment_status: string;
+  @Column()
+  payment_status: string;
 
-   @Column()
-   isMorning: boolean;
+  @Column()
+  isMorning: boolean;
 
-   @CreateDateColumn()
-   created_at: Date;
+  @Column()
+  price: string;
 
-   @Column()
-   user_id: string;
+  @CreateDateColumn()
+  created_at: Date;
 
-   @ManyToOne(()=> User , user => user.schedules)
-   @JoinColumn({name: 'user_id'})
-   user:User;
+  @Column()
+  user_id: string;
 
-   constructor() {
-     if (!this.id) {
+  @ManyToOne(() => User, user => user.schedules)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
+
+  constructor() {
+    if (!this.id) {
       this.id = uuidv4();
-     }
-   }
+    }
+  }
 
 }
 
-export {Schedules}
+export { Schedules }

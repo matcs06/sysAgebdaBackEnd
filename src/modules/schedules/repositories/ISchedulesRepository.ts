@@ -1,24 +1,25 @@
 import { Schedules } from '../entities/Schedules';
 
-interface ICreateSchedulesDTO{
-   customer_name:string;
-   service:string;
+interface ICreateSchedulesDTO {
+   customer_name: string;
+   service: string;
    date: string;
-   start_time:string;
-   service_duration:string;
+   start_time: string;
+   service_duration: string;
    phone_number: string;
-   value?:string;
+   value?: string;
    isMorning: true | false;
-   user_id:string;
+   price?: string;
+   user_id: string;
 }
 
-interface ISchedulesRepository{
-   list(user_id:string): Promise<Schedules[]>;
+interface ISchedulesRepository {
+   list(user_id: string): Promise<Schedules[]>;
    create(data: ICreateSchedulesDTO): Promise<void>;
-   deleteById(id:string): Promise<void>;
-   findById(id:string): Promise<Schedules | undefined>;
-   findByPhone(phone_number:string):Promise<Schedules | undefined>
-   save(data: Schedules):Promise<void>;
+   deleteById(id: string): Promise<void>;
+   findById(id: string): Promise<Schedules | undefined>;
+   findByPhone(phone_number: string): Promise<Schedules | undefined>
+   save(data: Schedules): Promise<void>;
 }
 
 export { ISchedulesRepository, ICreateSchedulesDTO };

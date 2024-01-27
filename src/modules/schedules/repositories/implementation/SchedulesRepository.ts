@@ -2,11 +2,11 @@ import { getRepository, Repository } from "typeorm";
 import { Schedules } from "../../entities/Schedules";
 import { ICreateSchedulesDTO, ISchedulesRepository } from "../ISchedulesRepository";
 
-class SchedulesRepository implements ISchedulesRepository{
+class SchedulesRepository implements ISchedulesRepository {
 
    private repository: Repository<Schedules>
 
-   constructor(){
+   constructor() {
       this.repository = getRepository(Schedules)
    }
 
@@ -20,10 +20,10 @@ class SchedulesRepository implements ISchedulesRepository{
       return schedule;
    }
 
-   async list(user_id:string): Promise<Schedules[]> {
-      const schedules = await this.repository.find({where:{user_id: user_id}})
-      
-      return schedules; 
+   async list(user_id: string): Promise<Schedules[]> {
+      const schedules = await this.repository.find({ where: { user_id: user_id } })
+
+      return schedules;
 
    }
 
@@ -33,11 +33,9 @@ class SchedulesRepository implements ISchedulesRepository{
 
    }
 
-   async findByPhone(phone_number:string): Promise<Schedules | undefined> {
-      const schedules = await this.repository.findOne({phone_number})
-
+   async findByPhone(phone_number: string): Promise<Schedules | undefined> {
+      const schedules = await this.repository.findOne({ phone_number })
       return schedules;
-
    }
 
    public async save(data: Schedules): Promise<void> {
@@ -46,4 +44,4 @@ class SchedulesRepository implements ISchedulesRepository{
 
 }
 
-export {SchedulesRepository};
+export { SchedulesRepository };
