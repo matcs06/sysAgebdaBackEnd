@@ -20,12 +20,15 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
+    - run: cp -r /home/mat/app/server/server/sysAgebdaBackEnd/sysAgebdaBackEnd/images/. /home/mat/app/server/imagesbackup/
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
     - run: yarn
     - run: yarn build
     - run: cp /home/mat/app/server/ormconfig.json.example /home/mat/app/server/server/sysAgebdaBackEnd/sysAgebdaBackEnd/ormconfig.json
+    - run: cp -r /home/mat/app/server/imagesbackup/. /home/mat/app/server/server/sysAgebdaBackEnd/sysAgebdaBackEnd/images/
+    - run: rm -r /home/mat/app/server/imagesbackup/*
     - run: yarn typeorm migration:run
     - run: pm2 restart clickeagenda
       
