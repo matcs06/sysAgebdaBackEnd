@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import { IProductsRepository } from '../../product/repositories/IProductsRepository';
 import { ICreateSchedulesDTO, ISchedulesRepository } from '../repositories/ISchedulesRepository';
+import { addLeadingZero } from '../../../utils/AddTimes';
 
 @injectable()
 class ListScheduleByMonthAndYearService {
@@ -57,7 +58,14 @@ class ListScheduleByMonthAndYearService {
 
     })
 
-    const filteredArrayByMonthAndYear = newarrayOfSchedules.filter((schedule: ICreateSchedulesDTO) => schedule.date.substring(3) == schedule_date)
+    const filteredYear = schedule_date.substring(3)
+
+    //const previousMonth = addLeadingZero((currenMont - 1)) + "/" + schedule_date.substring(4)
+
+    //const nextMonth = addLeadingZero((currenMont + 1)) + "/" + schedule_date.substring(4)
+
+
+    const filteredArrayByMonthAndYear = newarrayOfSchedules.filter((schedule: ICreateSchedulesDTO) => schedule.date.substring(6) == filteredYear)
 
     return filteredArrayByMonthAndYear
 
