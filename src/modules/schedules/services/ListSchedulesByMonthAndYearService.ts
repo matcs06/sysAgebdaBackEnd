@@ -59,13 +59,16 @@ class ListScheduleByMonthAndYearService {
     })
 
     const filteredYear = schedule_date.substring(3)
+    const filteredMont = schedule_date.substring(0, 2)
 
-    //const previousMonth = addLeadingZero((currenMont - 1)) + "/" + schedule_date.substring(4)
+    var filteredArrayByMonthAndYear
+    if (Number(filteredMont)) {
+      filteredArrayByMonthAndYear = newarrayOfSchedules.filter((schedule: ICreateSchedulesDTO) => schedule.date.substring(3) == schedule_date)
 
-    //const nextMonth = addLeadingZero((currenMont + 1)) + "/" + schedule_date.substring(4)
+    } else {
+      filteredArrayByMonthAndYear = newarrayOfSchedules.filter((schedule: ICreateSchedulesDTO) => schedule.date.substring(6) == filteredYear)
+    }
 
-
-    const filteredArrayByMonthAndYear = newarrayOfSchedules.filter((schedule: ICreateSchedulesDTO) => schedule.date.substring(6) == filteredYear)
 
     return filteredArrayByMonthAndYear
 
