@@ -20,10 +20,10 @@ const updateScheduleController = new UpdateScheduleController()
 const listSchedulesByMonthAndYear = new ListScheduleByMonthAndYearController()
 
 schedulesRoutes.post('/', createScheduleController.handle);
+schedulesRoutes.get("/bymonthandyear", listSchedulesByMonthAndYear.handle)
 schedulesRoutes.get("/", listScheduleController.handle)
 
 schedulesRoutes.use(ensureAuthenticated)
-schedulesRoutes.get("/bymonthandyear", listSchedulesByMonthAndYear.handle)
 schedulesRoutes.delete("/:id", deleteScheduleController.handle)
 schedulesRoutes.patch("/", updateScheduleController.handle)
 
