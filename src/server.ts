@@ -15,7 +15,12 @@ import { AppError } from "./shared/errors/AppError";
 createConnection()
 
 const app = express();
-app.use(cors());
+
+// Define CORS options to allow only clickeagenda.vercel.app
+const corsOptions = {
+    origin: 'https://clickeagenda.vercel.app', // Allow only this origin
+};
+app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(
   '/files', express.static(path.resolve(__dirname, "../images/users/"))
