@@ -12,6 +12,7 @@ import swaggerFile from "./swagger.json";
 import { createConnection } from "typeorm";
 import { AppError } from "./shared/errors/AppError";
 
+
 createConnection()
 
 const app = express();
