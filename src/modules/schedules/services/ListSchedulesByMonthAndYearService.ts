@@ -60,10 +60,15 @@ class ListScheduleByMonthAndYearService {
 
     const filteredYear = schedule_date.substring(3)
     const filteredMont = schedule_date.substring(0, 2)
+    const filterPreviousMonth = Number(filteredMont) == 1 ? "12" : String(addLeadingZero(Number(filteredMont) - 1))
+    const filterNextMonth = Number(filteredMont) == 12 ? "01" : String(addLeadingZero(Number(filteredMont) + 1))
+
+    const nextMonthYearDate = filterNextMonth + "/" + filteredYear
+    const previousMonthYearDate = filterPreviousMonth + "/" + filteredYear
 
     var filteredArrayByMonthAndYear
     if (Number(filteredMont)) {
-      filteredArrayByMonthAndYear = newarrayOfSchedules.filter((schedule: ICreateSchedulesDTO) => schedule.date.substring(3) == schedule_date)
+      filteredArrayByMonthAndYear = newarrayOfSchedules.filter((schedule: ICreateSchedulesDTO) => schedule.date.substring(3) == schedule_date || schedule.date.substring(3) == previousMonthYearDate || schedule.date.substring(3) == nextMonthYearDate)
 
     } else {
       filteredArrayByMonthAndYear = newarrayOfSchedules.filter((schedule: ICreateSchedulesDTO) => schedule.date.substring(6) == filteredYear)
