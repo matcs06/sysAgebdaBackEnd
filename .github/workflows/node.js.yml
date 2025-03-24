@@ -26,6 +26,7 @@ jobs:
     - run: yarn
     - run: yarn build
     - run: cp /home/mat/app/server/ormconfig.json.example /home/mat/app/server/server/sysAgebdaBackEnd/sysAgebdaBackEnd/ormconfig.json
+    - run: cp /home/mat/app/server/.env /home/mat/app/server/server/sysAgebdaBackEnd/sysAgebdaBackEnd/
     - run: yarn typeorm migration:run
     - run: pm2 restart clickeagenda
       
