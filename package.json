@@ -29,6 +29,9 @@
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
     "dev:build": "node /dist/server.js"
   },
+  "resolutions": {
+    "@types/express": "^4.17.13"
+  },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.13",

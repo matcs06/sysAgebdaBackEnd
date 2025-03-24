@@ -18,7 +18,7 @@ import multer from 'multer';
 const productsRoutes = Router();
 
 const createProductController = new CreateProductController()
-const listProductController = new ListProductController
+const listProductController = new ListProductController()
 const deleteProductController = new DeleteProductController()
 const listSingleProductController = new ListSingleProductController()
 const updateProductController = new UpdateProductController()
