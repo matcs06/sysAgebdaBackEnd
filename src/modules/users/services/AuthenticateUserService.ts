@@ -71,8 +71,28 @@ class AuthenticateUserService {
 
       const payload: TokenPayload | undefined = ticket.getPayload()
       const google_user_email = payload?.email ?? ''
- 
-      const user = await this.UserRepository.findByName(google_user_email)
+      console.log(google_user_email)
+      let user = await this.UserRepository.findByName(google_user_email)
+
+      if(user){
+         const token = sign
+         ({}, "a401dd02b72c03e65c64d1ec858def08", {
+            subject: user.id,
+            expiresIn: "10d"
+         });
+
+         return  {
+            token,
+            user: {
+               name: user.name,
+               username: user.username,
+               user_id: user.id,
+               business_name: user.business_name
+            }
+         }
+         
+      }
+
       let token = "" 
       let tokenReturn: IResponse = {
          token: "",
@@ -96,23 +116,23 @@ class AuthenticateUserService {
              });
           }
 
-         const newUser = await this.UserRepository.findByName(google_user_email)
-         if(!newUser){
+         user = await this.UserRepository.findByName(google_user_email)
+         if(!user){
             throw new AppError("Error when creating user with google")
          }
 
          token = sign({}, "a401dd02b72c03e65c64d1ec858def08", {
-            subject: newUser.id,
+            subject: user.id,
             expiresIn: "10d"
          });
 
          tokenReturn  = {
             token,
             user: {
-               name: newUser.name,
-               username: newUser.username,
-               user_id: newUser.id,
-               business_name: newUser.business_name
+               name: user.name,
+               username: user.username,
+               user_id: user.id,
+               business_name: user.business_name
             }
          }
       }
